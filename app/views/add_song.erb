@@ -1,0 +1,27 @@
+ <h1>Tell the word what are you tunes you!</h1> 
+  <% if @song.errors.messages.any? %>
+    <% @song.errors.full_messages.each do |message| %>
+      <div class='error_box'> <%= message %> </div> 
+    <% end %>
+  <% end %>
+
+
+
+ <form method='post' action='/add_song'>
+  <div>
+    <label>Title:</label>
+        <input type='text' name='title' placeholder='Eg. Santeria' size='45px' value='<%=@song.title%>'>
+  </div>
+  <div>
+    <label>Author:</label>
+    <input type='text' name='author' placeholder='Eg. Sublime' size='45px' value='<%=@song.author%>'>
+  </div>
+  <div>
+    <label>URL:</label>
+    <input type='text' name='url' placeholder='(optional)Eg. http://www.google.com' size='45px' value='<%=@song.url%>'>
+  </div>
+
+  <div>
+    <input type='submit' value='Submit'>
+  </div>
+</form> 

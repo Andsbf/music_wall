@@ -1,1 +1,14 @@
-<h1>Home Page</h1>
+<h1>Welcome to Song-Wall</h1>
+
+<% if @songs.any? %>
+  <div>
+    <strong>Songs people have posted</strong>
+    <ul>
+      <% @songs.each do |song| %>
+        <li><%="#{song.author} - #{song.title}"%></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<a href="/add_song"><h2>Add your favorite song here!</h2></a> 
