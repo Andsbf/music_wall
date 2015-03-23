@@ -2,13 +2,13 @@
 
 <% if @songs.any? %>
   <div>
-    <strong>Songs people have posted</strong>
+    <h2>Songs people have posted:</h2>
     <ul>
       <% @songs.each do |song| %>
-        <li><%="#{song.author} - #{song.title}"%></li>
+        <li><%="#{song.author} - #{song.title} #{song.url}" %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
-<a href="/add_song"><h2>Add your favorite song here!</h2></a> 
+<a href="/add_song"><h2  class="btn btn-primary btn-lg">Add your favorite song here!</h2></a> 

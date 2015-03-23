@@ -1,7 +1,7 @@
  <h1>Tell the word what are you tunes you!</h1> 
   <% if @song.errors.messages.any? %>
     <% @song.errors.full_messages.each do |message| %>
-      <div class='error_box'> <%= message %> </div> 
+      <div class="alert alert-danger" role="alert"> <%= message %> </div> 
     <% end %>
   <% end %>
 
@@ -9,19 +9,20 @@
 
  <form method='post' action='/add_song'>
   <div>
-    <label>Title:</label>
-        <input type='text' name='title' placeholder='Eg. Santeria' size='45px' value='<%=@song.title%>'>
+    <h3>Title:</h3>
+        <input type='text' name='title' placeholder='Eg. Santeria' size='45px' value='<%=@song.title%>' class="form-control">
   </div>
   <div>
-    <label>Author:</label>
-    <input type='text' name='author' placeholder='Eg. Sublime' size='45px' value='<%=@song.author%>'>
+    <h3>Author:</h3>
+    <input type='text' name='author' placeholder='Eg. Sublime' size='45px' value='<%=@song.author%>' class="form-control">
   </div>
   <div>
-    <label>URL:</label>
-    <input type='text' name='url' placeholder='(optional)Eg. http://www.google.com' size='45px' value='<%=@song.url%>'>
+    <h3>URL:</h3>
+    <input type='text' name='url' placeholder='(optional)Eg. http://www.google.com' size='45px' value='<%=@song.url%>' class="form-control">
   </div>
 
   <div>
-    <input type='submit' value='Submit'>
+  <br>
+    <input type='submit' value='Submit' class="btn btn-primary btn-lg">
   </div>
 </form> 
