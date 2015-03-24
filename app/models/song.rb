@@ -1,6 +1,8 @@
 class Song < ActiveRecord::Base
   validates :author, presence: true
   validates :title, presence: true
+  
 
-  belongs_to :user
+  has_many :votes
+  has_many :users, through: :votes
 end

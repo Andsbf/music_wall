@@ -4,12 +4,13 @@
   <div>
     <h2>Most popular songs:</h2>
     <ol>
+
       <% @songs.each do |song| %>
-        <li><%="#{song.author} - #{song.title} - #{song.url} posted by #{song.user.username}" %> 
-          <%if @current_user %>
-            <form style="display: inline"method='get' action='/liked_song'>
-              <input type='submit' value='like' class="btn btn-default btn-xs" />
-              <input type='hidden' name='liked_song' value='<%= song.id %>'/>
+        <li><%="#{song.author} - #{song.title} #{song.url}"%> 
+          <%if @current_user && !Vote.where(user_id: @current_user.id).where(song_id: song.id).any?%>
+            <form style="display: inline"method='get' action='/vote_song'>
+              <input type='submit' value='vote!' class="btn btn-default btn-xs" />
+              <input type='hidden' name='vote' value='<%= song.id %>'/>
             </form>
           <% end %>
         </li>

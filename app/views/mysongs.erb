@@ -2,6 +2,6 @@
 
 <ul>
   <% @current_user.songs.each do |song| %>
-    <li><%="#{song.author} - #{song.title} - #{song.url}" %></li>  
+    <li><%="#{song.author} - #{song.title} #{song.url}" %></li>  
   <% end %>
 </ul>

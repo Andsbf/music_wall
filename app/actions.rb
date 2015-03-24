@@ -1,6 +1,6 @@
 # Homepage (Root path)
 def all_songs
-  @songs = Song.all.order(likes: :desc)
+  @songs = Song.select('songs.id, count(votes.id)').includes(:votes).group('songs.id').order('count(votes.id) desc')  
 end
 
 before do
@@ -9,7 +9,6 @@ end
 
 get '/' do
   all_songs
-
   erb :index
 end
 
@@ -25,13 +24,14 @@ post '/' do
     redirect '/?login=failed'
   end
 end
+
 get '/add_song' do
   @song = Song.new
   erb :add_song
 end
 
 post '/add_song' do
-  @song = Song.create(title: params[:title], author: params[:author], url: params[:url], user_id: @current_user.id)
+  @song = Song.create(title: params[:title], author: params[:author], url: params[:url])
 
   if @song.save
     redirect '/'
@@ -65,18 +65,7 @@ get '/mysongs' do
   erb :mysongs
 end
 
-get '/liked_song' do
-params[:liked_song]
-@liked = Song.find(params[:liked_song])
-@liked.likes = 0 if !@liked.likes
-@liked.likes += 1 
-@liked.save
-redirect '/'
+get '/vote_song' do
+  @current_user.votes << Vote.create(song_id: params[:vote])
+  redirect '/'
 end
-
-
-
-
-
-
-
