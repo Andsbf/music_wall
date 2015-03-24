@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323182640) do
+ActiveRecord::Schema.define(version: 20150323213621) do
 
   create_table "songs", force: true do |t|
     t.string   "title",      null: false
     t.string   "author",     null: false
     t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "user_id",    null: false
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "username",   null: false
+    t.string   "password",   null: false
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
