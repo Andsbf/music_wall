@@ -1,11 +1,18 @@
-<h1>Welcome to Song-Wall</h1>
+<h1>Welcome to SongwALL</h1>
 
 <% if @songs && @songs.any? %>
   <div>
     <h2>Songs people have posted:</h2>
     <ul>
       <% @songs.each do |song| %>
-        <li><%="#{song.author} - #{song.title} - #{song.url} posted by #{song.user.username}" %></li>
+        <li><%="#{song.author} - #{song.title} - #{song.url} posted by #{song.user.username}" %> 
+          <%if @current_user %>
+            <form style="display: inline"method='get' action='/liked_song'>
+              <input type='submit' value='like' class="btn btn-default btn-xs" />
+              <input type='hidden' name='liked_song' value='<%= song.id %>'/>
+            </form>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>

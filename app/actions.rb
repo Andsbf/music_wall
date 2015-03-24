@@ -1,6 +1,6 @@
 # Homepage (Root path)
 def all_songs
-  @songs = Song.all
+  @songs = Song.all.order(likes: :desc)
 end
 
 before do
@@ -65,6 +65,14 @@ get '/mysongs' do
   erb :mysongs
 end
 
+get '/liked_song' do
+params[:liked_song]
+@liked = Song.find(params[:liked_song])
+@liked.likes = 0 if !@liked.likes
+@liked.likes += 1 
+@liked.save
+redirect '/'
+end
 
 
 

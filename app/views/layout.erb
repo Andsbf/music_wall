@@ -45,7 +45,7 @@
         <% if !@current_user %>
           <div id="navbar" class="navbar-collapse collapse">            
             <form method="post" action="/" class="navbar-form navbar-right">
-              <% if params.key?(:login) && params[:login] == "failed" %>
+              <% if params.key?("login") && params[:login] == "failed" %>
                 <div class="alert alert-danger" style="display: inline; padding: 5px; margin-right: 8px" role="alert"> Ops! login failed, username or password invalid!</div> 
               <% end %>
               <div class="form-group">
