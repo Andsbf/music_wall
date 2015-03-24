@@ -69,3 +69,9 @@ get '/vote_song' do
   @current_user.votes << Vote.create(song_id: params[:vote])
   redirect '/'
 end
+
+get '/song/:song_id' do
+  redirect '/signup'if !@current_user
+  @song = Song.find(params[:song_id])
+  erb :song_id
+end

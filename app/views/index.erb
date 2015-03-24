@@ -4,9 +4,8 @@
   <div>
     <h2>Most popular songs:</h2>
     <ol>
-
       <% @songs.each do |song| %>
-        <li><%="#{song.author} - #{song.title} #{song.url}"%> 
+        <li> <a href="/song/<%= song.id %>"><%="#{song.author} - #{song.title} #{song.url}"%></a>
           <%if @current_user && !Vote.where(user_id: @current_user.id).where(song_id: song.id).any?%>
             <form style="display: inline"method='get' action='/vote_song'>
               <input type='submit' value='vote!' class="btn btn-default btn-xs" />
