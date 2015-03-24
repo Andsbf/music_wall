@@ -1,0 +1,7 @@
+<h2>Check the songs you have inputed to the songwALL</h2>
+
+<ul>
+  <% @current_user.songs.each do |song| %>
+    <li><%="#{song.author} - #{song.title} - #{song.url} posted by #{song.user.username}" %></li>  
+  <% end %>
+</ul>
