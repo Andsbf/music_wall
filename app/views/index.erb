@@ -2,8 +2,8 @@
 
 <% if @songs && @songs.any? %>
   <div>
-    <h2>Songs people have posted:</h2>
-    <ul>
+    <h2>Most popular songs:</h2>
+    <ol>
       <% @songs.each do |song| %>
         <li><%="#{song.author} - #{song.title} - #{song.url} posted by #{song.user.username}" %> 
           <%if @current_user %>
@@ -14,18 +14,13 @@
           <% end %>
         </li>
       <% end %>
-    </ul>
+    </ol>
   </div>
 <% end %>
 
 <% if @current_user %>
   <a href="/add_song"><h2  class="btn btn-primary btn-lg">Add your songs here!</h2></a> 
 <% end %>
-
-
-
-
-
 <% if !@current_user %>
   <a href="/signup"><h2  class="btn btn-primary btn-lg">Click here to SignUp and post your songs here!</h2></a> 
 <% end %>
