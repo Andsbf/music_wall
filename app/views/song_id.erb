@@ -35,7 +35,18 @@
         <input type='hidden' name='song_id' value='<%= @song.id %>'/>
       </form>
       <% end %>
+      <form action="demo_form.asp">
+        <select name="rate">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <input type="submit" class='btn btn-default btn-xs' value="Submit">
+      </form>
     </li>
+    <hr>
   <% end %>
 </ul></h3>
 
