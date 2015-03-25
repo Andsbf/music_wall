@@ -27,7 +27,15 @@
 
 <h3><ul>
   <% @comments.each do |comment| %>
-    <li> <%="#{comment.comment}"%></li>
+    <li>
+      <span><%="#{comment.comment}"%></span>
+      <% if comment == @user_comment.first %>
+      <form method='post' action='/song/delete_comment/<%= comment.id %>' style="display: inline">
+        <input type="submit" class="btn btn-warning" value='Delete'></input>
+        <input type='hidden' name='song_id' value='<%= @song.id %>'/>
+      </form>
+      <% end %>
+    </li>
   <% end %>
 </ul></h3>
 

@@ -71,7 +71,6 @@ get '/vote_song' do
 end
 
 get '/song/:song_id' do
-  binding.pry
   @user_comment = Comment.where(song_id: params[:song_id], user_id: @current_user.id)
   @comments = Comment.where(song_id: params[:song_id])
   @song = Song.find(params[:song_id])
@@ -81,6 +80,12 @@ end
 post '/song/add_comment' do
   Comment.create(song_id: params[:song_id], user_id: @current_user.id, comment: params[:comment])
   @comments = Comment.where(song_id: params[:song_id])
+  @song = Song.find(params[:song_id])
+  redirect "/song/#{params[:song_id]}"
+end
+
+post '/song/delete_comment/:id' do
+  Comment.find(params[:id]).destroy
   @song = Song.find(params[:song_id])
   redirect "/song/#{params[:song_id]}"
 end
