@@ -5,7 +5,7 @@ class CreatesSongsTable < ActiveRecord::Migration
       t.string :author, null: false
       t.string :url 
  
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

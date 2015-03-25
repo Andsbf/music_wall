@@ -66,12 +66,22 @@ get '/mysongs' do
 end
 
 get '/vote_song' do
-  @current_user.votes << Vote.create(song_id: params[:vote])
+  Vote.create(song_id: params[:vote], user_id: @current_user.id)
   redirect '/'
 end
 
 get '/song/:song_id' do
-  redirect '/signup'if !@current_user
+  binding.pry
+  @user_comment = Comment.where(song_id: params[:song_id], user_id: @current_user.id)
+  @comments = Comment.where(song_id: params[:song_id])
   @song = Song.find(params[:song_id])
   erb :song_id
 end
+
+post '/song/add_comment' do
+  Comment.create(song_id: params[:song_id], user_id: @current_user.id, comment: params[:comment])
+  @comments = Comment.where(song_id: params[:song_id])
+  @song = Song.find(params[:song_id])
+  redirect "/song/#{params[:song_id]}"
+end
+

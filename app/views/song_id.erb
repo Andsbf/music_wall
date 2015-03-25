@@ -1,3 +1,34 @@
 <h2>Check what people is taling about:</h2>
 
 <h3><%="#{@song.author} - #{@song.title} #{@song.url}" %></h3>
+
+
+<% if @current_user %>
+
+  <% if @user_comment.any? %>
+    <h2>You have already posted on this song</h2>
+  <% else %>
+    <form method='post' action='/song/add_comment' id=''>
+      <div>
+        <h3>Post your Comment:</h3>
+        <textarea name="comment" class="form-control" rows="3" placeholder='Enter text here...'></textarea>
+      </div>
+      <div>
+      <br>
+        <input type='submit' value='post' class="btn btn-primary btn-lg pull-right">
+        <input type='hidden' name='song_id' value='<%= @song.id %>'/>
+      </div>
+    </form> 
+  <% end %>
+<% else %>
+   <a href="/signup"><h2  class="btn btn-primary btn-lg">SignUp or Login to post here!</h2></a> 
+<% end %>
+
+
+<h3><ul>
+  <% @comments.each do |comment| %>
+    <li> <%="#{comment.comment}"%></li>
+  <% end %>
+</ul></h3>
+
+  
