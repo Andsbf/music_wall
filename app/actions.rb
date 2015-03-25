@@ -71,7 +71,8 @@ get '/vote_song' do
 end
 
 get '/song/:song_id' do
-  @user_comment = Comment.where(song_id: params[:song_id], user_id: @current_user.id)
+
+  @user_comment = Comment.where(song_id: params[:song_id], user_id: @current_user.id) if @current_user
   @comments = Comment.where(song_id: params[:song_id])
   @song = Song.find(params[:song_id])
   erb :song_id

@@ -5,7 +5,7 @@
 
 <% if @current_user %>
 
-  <% if @user_comment.any? %>
+  <% if @user_comment && @user_comment.any?%>
     <h2>You have already posted on this song</h2>
   <% else %>
     <form method='post' action='/song/add_comment' id=''>
@@ -29,7 +29,7 @@
   <% @comments.each do |comment| %>
     <li>
       <span><%="#{comment.comment}"%></span>
-      <% if comment == @user_comment.first %>
+      <% if @user_comment && comment == @user_comment.first %>
       <form method='post' action='/song/delete_comment/<%= comment.id %>' style="display: inline">
         <input type="submit" class="btn btn-warning" value='Delete'></input>
         <input type='hidden' name='song_id' value='<%= @song.id %>'/>
